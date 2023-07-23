@@ -12,6 +12,7 @@
     <module>SpringBoot_Vue_voumel_service</module>
     <module>SpringBoot_Vue_voumel_common</module>
     <module>SpringBoot_Vue_voumel_web</module>
+    <module>SpringBoot_Vue_voumel_model</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -28,6 +29,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <springboot.version>2.0.2.RELEASE</springboot.version>
+
   </properties>
 
   <dependencies>

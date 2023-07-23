@@ -7,10 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SpringBoot_Vue_voumel_backed" />
+        <module name="SpringBoot_Vue_voumel_model" />
         <module name="SpringBoot_Vue_voumel_common" />
         <module name="SpringBoot_Vue_voumel_mobile" />
-        <module name="SpringBoot_Vue_voumel_mapper" />
         <module name="SpringBoot_Vue_voumel_service" />
+        <module name="SpringBoot_Vue_voumel_mapper" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
