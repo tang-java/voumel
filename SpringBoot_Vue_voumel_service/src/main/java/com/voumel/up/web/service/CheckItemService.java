@@ -15,4 +15,6 @@ import java.util.List;
  */
 public interface CheckItemService {
     PageResult findItemByConditionAndPaging(QueryPageBean queryPageBean);
+
+    Integer addCheckItem(CheckItem checkItem);
 }

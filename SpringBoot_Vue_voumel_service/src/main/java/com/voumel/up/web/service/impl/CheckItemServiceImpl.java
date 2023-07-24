@@ -41,4 +41,10 @@ public class CheckItemServiceImpl implements CheckItemService {
         PageResult pageResult = new PageResult(total,checkItems);
         return pageResult;
     }
+
+    @Override
+    public Integer addCheckItem(CheckItem checkItem) {
+        checkItem.setStatus(1);
+        return checkItemMapper.addCheckItem(checkItem);
+    }
 }

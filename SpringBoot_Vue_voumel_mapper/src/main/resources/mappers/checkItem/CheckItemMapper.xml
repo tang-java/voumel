@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voumel.up.web.mapper.CheckItemMapper">
+    <insert id="addCheckItem" parameterType="com.volume.up.pojo.CheckItem">
+        insert into t_checkitem(code,name,sex,age,price,type,attention,remark,status)
+        values(#{code},#{name},#{sex},#{age},#{price},#{type},#{attention},#{remark},#{status})
+
+    </insert>
     <select id="findItemByConditionAndPaging" parameterType="com.voumel.up.entity.QueryPageBean"
             resultType="com.volume.up.pojo.CheckItem">
         select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem

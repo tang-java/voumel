@@ -7,9 +7,9 @@ import com.voumel.up.entity.QueryPageBean;
 import com.voumel.up.entity.Result;
 import com.voumel.up.web.service.CheckItemService;
 import org.apache.ibatis.jdbc.Null;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,7 +31,6 @@ public class ChickItemController {
         Result checkItemResult = new Result();
         QueryPageBean queryPageBean = new QueryPageBean();
         PageResult pageResult = null;
-
         queryPageBean.setCurrentPage(currentPage);
         queryPageBean.setPageSize(pageSize);
         queryPageBean.setQueryString(queryString);
@@ -48,5 +47,20 @@ public class ChickItemController {
         } finally {
             return checkItemResult;
         }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED,readOnly = false)
+    @PostMapping("/checkItem")
+    public Result addCheckItem(@RequestBody CheckItem checkItem){
+        Result result = new Result();
+        Integer count=checkItemService.addCheckItem(checkItem);
+        if (count>0){
+            result.setFlag(true);
+            result.setMessage(MessageConstant.ADD_CHECKITEM_SUCCESS);
+        }else {
+            result.setFlag(false);
+            result.setMessage(MessageConstant.ADD_CHECKITEM_FAIL);
+        }
+        return result;
     }
 }

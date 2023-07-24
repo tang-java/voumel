@@ -17,4 +17,6 @@ import java.util.List;
 @Mapper
 public interface CheckItemMapper {
     List<CheckItem> findItemByConditionAndPaging(QueryPageBean queryPageBean);
+
+    Integer addCheckItem(CheckItem checkItem);
 }

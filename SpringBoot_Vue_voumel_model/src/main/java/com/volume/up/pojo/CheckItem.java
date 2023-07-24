@@ -22,6 +22,14 @@ public class CheckItem implements Serializable {
     public CheckItem() {
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public CheckItem(Integer id, String code, String name, String sex, String age, Float price, String type, String remark, String attention, Integer status) {
         this.id = id;
         this.code = code;
