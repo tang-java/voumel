@@ -11,5 +11,24 @@
 
     <artifactId>SpringBoot_Vue_voumel_common</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+        <!--监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+        <!--元数据-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+    </dependencies>
 
 </project>
