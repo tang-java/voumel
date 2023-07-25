@@ -8,9 +8,12 @@ import com.voumel.up.entity.Result;
 import com.voumel.up.web.service.CheckItemService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.stream.Collectors;
 
 /**
  * @author 小唐
@@ -49,7 +52,7 @@ public class ChickItemController {
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @PostMapping("/checkItem")
-    public Result addCheckItem(@RequestBody CheckItem checkItem) {
+    public Result addCheckItem(@RequestBody @Validated CheckItem checkItem, BindingResult bindingResult) {
         Result result = new Result();
         Integer count = checkItemService.addCheckItem(checkItem);
         if (count > 0) {
@@ -59,27 +62,44 @@ public class ChickItemController {
             result.setFlag(false);
             result.setMessage(MessageConstant.ADD_CHECKITEM_FAIL);
         }
+        if (bindingResult.hasErrors()){
+            result.setMessage(bindingResult.getAllErrors().stream().map(x->x.getDefaultMessage()).collect(Collectors.toList()).toString());
+        }
         return result;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @PutMapping("/checkItem")
     public Result updateCheckItem(@RequestBody CheckItem checkItem) {
-        Result result = new Result();
-        CheckItem check=checkItemService.findCheckItemById(checkItem.getId());
+        CheckItem check = checkItemService.findCheckItemById(checkItem.getId());
         checkItem.setStatus(check.getStatus());
-        if (check!=null){
-            Integer count = checkItemService.updateCheckItem(checkItem);
-            if (count > 0) {
-                result.setFlag(true);
-                result.setMessage(MessageConstant.EDIT_CHECKITEM_SUCCESS);
-            } else {
-                result.setFlag(false);
-                result.setMessage(MessageConstant.EDIT_CHECKITEM_FAIL);
+        if (check != null) {
+            try {
+                checkItemService.updateCheckItem(checkItem);
+                return new Result(true, MessageConstant.EDIT_CHECKITEM_SUCCESS);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new Result(false, MessageConstant.EDIT_CHECKITEM_FAIL);
             }
-        }else {
-            return new Result(false,"修改的数据不存在");
+        } else {
+            return new Result(false, "修改的数据不存在");
         }
-        return result;
+    }
+
+    @GetMapping("/checkItem/delete/{id:\\d+}")
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Result deleteCheckItem(@PathVariable Integer id) {
+        // 做删除前的确认
+        CheckItem checkItemById = checkItemService.findCheckItemById(id);
+        if (checkItemById != null) {
+            try {
+                checkItemService.updateCheckItem(checkItemById);
+                return new Result(true, MessageConstant.DELETE_CHECKGROUP_SUCCESS);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new Result(false,MessageConstant.DELETE_CHECKITEM_FAIL);
+            }
+        }
+        return new Result(false,"要删除的检查项不存在！！");
     }
 }

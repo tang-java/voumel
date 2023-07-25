@@ -1,5 +1,7 @@
 package com.volume.up.pojo;
 
+
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  */
 public class CheckItem implements Serializable {
     private static final long serialVersionUID = 8464196403944961412L;
+    @NotBlank(message = "id不能为空")
     private Integer id;//主键
     private String code;//项目编码
     private String name;//项目名称
