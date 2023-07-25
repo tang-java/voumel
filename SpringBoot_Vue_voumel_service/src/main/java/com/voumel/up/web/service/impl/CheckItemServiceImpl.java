@@ -28,17 +28,17 @@ public class CheckItemServiceImpl implements CheckItemService {
     public PageResult findItemByConditionAndPaging(QueryPageBean queryPageBean) {
         Integer currentPage = queryPageBean.getCurrentPage();
         Integer pageSize = queryPageBean.getPageSize();
-        if (currentPage == 0 || currentPage == null) {
+        if (currentPage <= 0 || currentPage == null) {
             currentPage = 1;
         }
-        if (pageSize == 0 || pageSize == null) {
+        if (pageSize <= 0 || pageSize == null) {
             pageSize = 10;
         }
-        PageHelper.startPage(currentPage,pageSize);
+        PageHelper.startPage(currentPage, pageSize);
         List<CheckItem> checkItems = checkItemMapper.findItemByConditionAndPaging(queryPageBean);
-        PageInfo<CheckItem> pageInfo=new PageInfo<>(checkItems);
+        PageInfo<CheckItem> pageInfo = new PageInfo<>(checkItems);
         long total = pageInfo.getTotal();
-        PageResult pageResult = new PageResult(total,checkItems);
+        PageResult pageResult = new PageResult(total, checkItems);
         return pageResult;
     }
 
@@ -46,5 +46,16 @@ public class CheckItemServiceImpl implements CheckItemService {
     public Integer addCheckItem(CheckItem checkItem) {
         checkItem.setStatus(1);
         return checkItemMapper.addCheckItem(checkItem);
+    }
+
+    @Override
+    public CheckItem findCheckItemById(Integer id) {
+        return checkItemMapper.findCheckItemById(id);
+
+    }
+
+    @Override
+    public Integer updateCheckItem(CheckItem checkItem) {
+        return checkItemMapper.updateCheckItem(checkItem);
     }
 }

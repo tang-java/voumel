@@ -19,4 +19,8 @@ public interface CheckItemMapper {
     List<CheckItem> findItemByConditionAndPaging(QueryPageBean queryPageBean);
 
     Integer addCheckItem(CheckItem checkItem);
+
+    CheckItem findCheckItemById(Integer id);
+
+    Integer updateCheckItem(CheckItem checkItem);
 }

@@ -6,8 +6,22 @@
     <insert id="addCheckItem" parameterType="com.volume.up.pojo.CheckItem">
         insert into t_checkitem(code,name,sex,age,price,type,attention,remark,status)
         values(#{code},#{name},#{sex},#{age},#{price},#{type},#{attention},#{remark},#{status})
-
     </insert>
+    <update id="updateCheckItem">
+        update
+        t_checkitem
+        set code=#{code},
+        name=#{name},
+        sex=#{sex},
+        age=#{age},
+        price=#{price},
+        type=#{type},
+        attention=#{attention},
+        remark=#{remark},
+        status=#{status}
+        where
+        id=#{id}
+    </update>
     <select id="findItemByConditionAndPaging" parameterType="com.voumel.up.entity.QueryPageBean"
             resultType="com.volume.up.pojo.CheckItem">
         select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem
@@ -21,5 +35,11 @@
                 or name like #{queryString}
             </if>
         </where>
+    </select>
+    <select id="findCheckItemById" resultType="com.volume.up.pojo.CheckItem" parameterType="java.lang.Integer">
+        select id,code,name,sex,age,price,type,attention,remark,status
+        from t_checkitem
+        where
+        id=#{id}
     </select>
 </mapper>

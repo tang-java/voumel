@@ -17,4 +17,8 @@ public interface CheckItemService {
     PageResult findItemByConditionAndPaging(QueryPageBean queryPageBean);
 
     Integer addCheckItem(CheckItem checkItem);
+
+    CheckItem findCheckItemById(Integer id);
+
+    Integer updateCheckItem(CheckItem checkItem);
 }

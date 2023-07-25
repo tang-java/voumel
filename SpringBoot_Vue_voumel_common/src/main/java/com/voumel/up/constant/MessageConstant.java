@@ -1,4 +1,4 @@
-package com.volume.up.constant;
+package com.voumel.up.constant;
 
 /**
  * 消息常量
