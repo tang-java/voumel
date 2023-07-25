@@ -33,4 +33,9 @@
             </if>
         </where>
     </select>
+
+    <insert id="AddCheckItemToCheckGroup" parameterType="java.lang.Integer">
+        insert into t_checkgroup_checkitem(checkgroup_id,checkitem_id) values(#{checkItemId},#{checkGroupId})
+    </insert>
+
 </mapper>

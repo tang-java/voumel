@@ -10,6 +10,8 @@ import com.voumel.up.web.service.CheckGroupService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -67,6 +69,18 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         List<CheckGroup> checkGroups = checkGroupMapper.findCheckGroup(queryPageBean);
         PageInfo<CheckGroup> pageInfo = new PageInfo<>(checkGroups);
         long total = pageInfo.getTotal();
-        return new PageResult(total,checkGroups);
+        return new PageResult(total, checkGroups);
+    }
+
+    @Override
+    public Integer AddCheckItemsToTheCheckGroupByCheckGroupId(String[] checkItemIds, Integer checkGroupId) {
+        Integer sum=0;
+        if (checkItemIds != null) {
+            for (String checkItemId : checkItemIds) {
+                Integer count=checkGroupMapper.AddCheckItemToCheckGroup(Integer.valueOf(checkItemId), checkGroupId);
+                sum=sum+count;
+            }
+        }
+        return sum;
     }
 }

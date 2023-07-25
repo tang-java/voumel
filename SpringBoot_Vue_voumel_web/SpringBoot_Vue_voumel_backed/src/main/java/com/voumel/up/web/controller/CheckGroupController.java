@@ -118,8 +118,13 @@ public class CheckGroupController {
      * @return result
      */
     @PostMapping("/checkGroup")
-    public Result AddCheckItemsToTheCheckGroupByCheckGroupId(@PathVariable String[] checkItemIds, @PathVariable String checkGroupId) {
-
-        return new Result();
+    public Result AddCheckItemsToTheCheckGroupByCheckGroupId(@PathVariable String[] checkItemIds, @PathVariable Integer checkGroupId) {
+        try {
+            Integer count=checkGroupService.AddCheckItemsToTheCheckGroupByCheckGroupId(checkItemIds,checkGroupId);
+            return new Result(true,"在检查组中新增检查项成功---新增"+count+"个检查项");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"在检查组中新增检查项失败");
+        }
     }
 }

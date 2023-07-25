@@ -22,4 +22,6 @@ public interface CheckGroupService {
     Integer updateCheckGroup(CheckGroup checkGroup);
 
     PageResult findCheckGroup(QueryPageBean queryPageBean);
+
+    Integer AddCheckItemsToTheCheckGroupByCheckGroupId(String[] checkItemIds, Integer checkGroupId);
 }

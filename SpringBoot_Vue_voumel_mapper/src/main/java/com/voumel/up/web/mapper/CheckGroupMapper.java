@@ -27,4 +27,6 @@ public interface CheckGroupMapper {
     Integer updateCheckGroup(CheckGroup checkGroup);
 
     List<CheckGroup> findCheckGroup(QueryPageBean queryPageBean);
+
+    Integer AddCheckItemToCheckGroup(Integer checkItemId, Integer checkGroupId);
 }
