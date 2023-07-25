@@ -93,6 +93,7 @@
       <version>${validation.version}</version>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>

@@ -20,5 +20,7 @@ public interface CheckItemService {
 
     CheckItem findCheckItemById(Integer id);
 
+    Integer updateCheckItemStatus(CheckItem checkItem);
+
     Integer updateCheckItem(CheckItem checkItem);
 }

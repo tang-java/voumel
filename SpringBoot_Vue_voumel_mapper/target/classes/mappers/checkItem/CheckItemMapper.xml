@@ -7,7 +7,34 @@
         insert into t_checkitem(code,name,sex,age,price,type,attention,remark,status)
         values(#{code},#{name},#{sex},#{age},#{price},#{type},#{attention},#{remark},#{status})
     </insert>
+
+    <update id="updateCheckItemStatus">
+        <include refid="updateCheckItem"></include>
+    </update>
     <update id="updateCheckItem">
+        <include refid="updateCheckItem"></include>
+    </update>
+    <select id="findItemByConditionAndPaging" parameterType="com.voumel.up.entity.QueryPageBean"
+            resultType="com.volume.up.pojo.CheckItem">
+        select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem
+        <where>
+            <if test="queryString != null">
+                <bind name="c_code" value="'%' + queryString + '%'"/>
+                and code like #{c_code}
+            </if>
+            <if test="queryString != null">
+                <bind name="c_name" value="'%' + queryString + '%'"/>
+                or name like #{c_name}
+            </if>
+        </where>
+    </select>
+    <select id="findCheckItemById" resultType="com.volume.up.pojo.CheckItem" parameterType="java.lang.Integer">
+        select id,code,name,sex,age,price,type,attention,remark,status
+        from t_checkitem
+        where
+        id=#{id}
+    </select>
+    <sql id="updateCheckItem">
         update
         t_checkitem
         set code=#{code},
@@ -21,25 +48,5 @@
         status=#{status}
         where
         id=#{id}
-    </update>
-    <select id="findItemByConditionAndPaging" parameterType="com.voumel.up.entity.QueryPageBean"
-            resultType="com.volume.up.pojo.CheckItem">
-        select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem
-        <where>
-            <if test="queryString !=null">
-                <bind name="queryString" value="'%'+queryString+'%'"/>
-                and code like #{queryString}
-            </if>
-            <if test="queryString !=null">
-                <bind name="name" value="'%'+queryString+'%'"/>
-                or name like #{queryString}
-            </if>
-        </where>
-    </select>
-    <select id="findCheckItemById" resultType="com.volume.up.pojo.CheckItem" parameterType="java.lang.Integer">
-        select id,code,name,sex,age,price,type,attention,remark,status
-        from t_checkitem
-        where
-        id=#{id}
-    </select>
+    </sql>
 </mapper>

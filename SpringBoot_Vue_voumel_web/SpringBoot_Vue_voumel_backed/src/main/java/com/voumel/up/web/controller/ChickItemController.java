@@ -28,7 +28,7 @@ public class ChickItemController {
     private CheckItemService checkItemService;
 
     @GetMapping("/checkItem/{page}/{pageSize}")
-    public Result findItemByConditionAndPaging(@PathVariable("page") Integer currentPage, @PathVariable Integer pageSize, String queryString) {
+    public Result findItemByConditionAndPaging(@PathVariable("page") Integer currentPage, @PathVariable Integer pageSize,String queryString) {
         Result checkItemResult = new Result();
         QueryPageBean queryPageBean = new QueryPageBean();
         PageResult pageResult = null;
@@ -54,6 +54,11 @@ public class ChickItemController {
     @PostMapping("/checkItem")
     public Result addCheckItem(@RequestBody @Validated CheckItem checkItem, BindingResult bindingResult) {
         Result result = new Result();
+        if (bindingResult.hasErrors()) {
+            result.setFlag(false);
+            result.setMessage(bindingResult.getAllErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.toList()).toString());
+            return result;
+        }
         Integer count = checkItemService.addCheckItem(checkItem);
         if (count > 0) {
             result.setFlag(true);
@@ -61,9 +66,6 @@ public class ChickItemController {
         } else {
             result.setFlag(false);
             result.setMessage(MessageConstant.ADD_CHECKITEM_FAIL);
-        }
-        if (bindingResult.hasErrors()){
-            result.setMessage(bindingResult.getAllErrors().stream().map(x->x.getDefaultMessage()).collect(Collectors.toList()).toString());
         }
         return result;
     }
@@ -91,15 +93,15 @@ public class ChickItemController {
     public Result deleteCheckItem(@PathVariable Integer id) {
         // 做删除前的确认
         CheckItem checkItemById = checkItemService.findCheckItemById(id);
-        if (checkItemById != null) {
+        if (checkItemById != null || checkItemById.getStatus() == 1) {
             try {
-                checkItemService.updateCheckItem(checkItemById);
+                checkItemService.updateCheckItemStatus(checkItemById);
                 return new Result(true, MessageConstant.DELETE_CHECKGROUP_SUCCESS);
             } catch (Exception e) {
                 e.printStackTrace();
-                return new Result(false,MessageConstant.DELETE_CHECKITEM_FAIL);
+                return new Result(false, MessageConstant.DELETE_CHECKITEM_FAIL);
             }
         }
-        return new Result(false,"要删除的检查项不存在！！");
+        return new Result(false, "要删除的检查项不存在！！");
     }
 }

@@ -1,2 +1,4 @@
+com\voumel\up\web\service\impl\CheckGroupServiceImpl.class
 com\voumel\up\web\service\CheckItemService.class
+com\voumel\up\web\service\CheckGroupService.class
 com\voumel\up\web\service\impl\CheckItemServiceImpl.class

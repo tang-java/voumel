@@ -55,6 +55,16 @@ public class CheckItemServiceImpl implements CheckItemService {
     }
 
     @Override
+    public Integer updateCheckItemStatus(CheckItem checkItem) {
+        if (checkItem.getStatus()==1){
+            checkItem.setStatus(0);
+        }else if (checkItem.getStatus()==0){
+            checkItem.setStatus(1);
+        }
+        return checkItemMapper.updateCheckItemStatus(checkItem);
+    }
+
+    @Override
     public Integer updateCheckItem(CheckItem checkItem) {
         return checkItemMapper.updateCheckItem(checkItem);
     }

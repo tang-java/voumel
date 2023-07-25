@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voumel.up.web.mapper.CheckGroupMapper">
+
+    <insert id="addCheckGroup" parameterType="com.volume.up.pojo.CheckGroup">
+        insert into t_checkgroup(code,name,helpCode,sex,remark,attention) values (#{code},#{name},#{helpCode},#{sex},#{remark},#{attention})
+    </insert>
+    <update id="updateCheckGroup" parameterType="com.volume.up.pojo.CheckGroup">
+        update t_checkgroup set code=#{code},name=#{name},helpCode=#{helpCode},sex=#{sex},remark=#{remark},attention=#{attention}
+    </update>
+    <delete id="deleteCheckGroup" parameterType="java.lang.Integer">
+        delete from t_checkgorup where id=#{checkGroupId}
+    </delete>
+    <delete id="deleteTheRelationshipBetweenCheckGroupsAndCheckItems" parameterType="java.lang.Integer">
+        delete from t_checkgroup_checkitem where checkgroup_id=#{checkGroupId}
+    </delete>
+    <select id="findCheckGroupById" resultType="com.volume.up.pojo.CheckGroup" parameterType="java.lang.Integer">
+        select id,code,name,helpCode,sex,remark,attention from t_checkgroup where id =#{id}
+    </select>
+    <select id="findCheckGroup" resultType="com.volume.up.pojo.CheckGroup"
+            parameterType="com.voumel.up.entity.QueryPageBean">
+        select id,code,name,helpCode,sex,remark,attention from t_checkgroup
+        <where>
+            <if test="queryString !=null">
+                <bind name="c_code" value="'%' + queryString + '%'"/>
+                and code like #{c_code}
+            </if>
+            <if test="queryString != null">
+                <bind name="c_name" value="'%' + queryString + '%'"/>
+                or name like #{c_name}
+            </if>
+        </where>
+    </select>
+</mapper>

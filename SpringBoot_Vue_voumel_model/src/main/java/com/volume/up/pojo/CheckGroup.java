@@ -1,5 +1,6 @@
 package com.volume.up.pojo;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +9,9 @@ import java.util.List;
  */
 public class CheckGroup implements Serializable {
     private Integer id;//主键
+    @NotBlank(message = "检查组编码不能为空")
     private String code;//编码
+    @NotBlank(message = "检查组名称不能为空")
     private String name;//名称
     private String helpCode;//助记
     private String sex;//适用性别
