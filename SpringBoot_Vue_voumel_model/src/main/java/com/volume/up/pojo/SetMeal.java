@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 体检套餐
  */
-public class Setmeal implements Serializable {
+public class SetMeal implements Serializable {
     private Integer id;
     private String name;
     private String code;
@@ -18,6 +18,33 @@ public class Setmeal implements Serializable {
     private String attention;
     private String img;//套餐对应图片存储路径
     private List<CheckGroup> checkGroups;//体检套餐对应的检查组，多对多关系
+    private int status;
+
+    public SetMeal() {
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public SetMeal(Integer id, String name, String code, String helpCode, String sex, String age, Float price, String remark, String attention, String img, List<CheckGroup> checkGroups, int status) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.helpCode = helpCode;
+        this.sex = sex;
+        this.age = age;
+        this.price = price;
+        this.remark = remark;
+        this.attention = attention;
+        this.img = img;
+        this.checkGroups = checkGroups;
+        this.status = status;
+    }
 
     public List<CheckGroup> getCheckGroups() {
         return checkGroups;

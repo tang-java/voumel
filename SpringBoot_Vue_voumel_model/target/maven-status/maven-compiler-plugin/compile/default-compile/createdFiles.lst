@@ -3,8 +3,8 @@ com\volume\up\pojo\Menu.class
 com\volume\up\pojo\OrderSetting.class
 com\volume\up\pojo\CheckGroup.class
 com\volume\up\pojo\Role.class
-com\volume\up\pojo\Setmeal.class
 com\volume\up\pojo\Order.class
+com\volume\up\pojo\SetMeal.class
 com\volume\up\pojo\CheckItem.class
 com\volume\up\pojo\Member.class
 com\volume\up\pojo\Permission.class

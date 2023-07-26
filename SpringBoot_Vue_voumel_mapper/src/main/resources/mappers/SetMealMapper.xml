@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voumel.up.web.mapper.SetMealMapper">
+
+    <select id="findSetMealByPageHelper" parameterType="com.voumel.up.entity.QueryPageBean" resultType="com.volume.up.pojo.SetMeal">
+        select id,name,code,helpCode,sex,age,price,remark,attention,img,status from t_setmeal
+        <where>
+            <if test="queryString != null">
+                <bind name="c_code" value="'%' + queryString + '%'"/>
+                and code like #{c_code}
+            </if>
+            <if test="queryString != null">
+                <bind name="c_name" value="'%' + queryString + '%'"/>
+                or name like #{c_name}
+            </if>
+            <if test="1==1">
+                and status = 1
+            </if>
+        </where>
+    </select>
+</mapper>
