@@ -18,22 +18,27 @@
             resultType="com.volume.up.pojo.CheckItem">
         select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem
         <where>
-            <if test="queryString != null">
+            <if test="queryString != null and queryString !=''">
                 <bind name="c_code" value="'%' + queryString + '%'"/>
                 and code like #{c_code}
             </if>
-            <if test="queryString != null">
+            <if test="queryString != null and queryString !=''">
                 <bind name="c_name" value="'%' + queryString + '%'"/>
                 or name like #{c_name}
             </if>
         </where>
     </select>
     <select id="findCheckItemById" resultType="com.volume.up.pojo.CheckItem" parameterType="java.lang.Integer">
-        select id,code,name,sex,age,price,type,attention,remark,status
-        from t_checkitem
-        where
-        id=#{id}
+        select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem where id=#{id} and status=1
     </select>
+    <select id="findCheckItemByCheckGroupId" resultType="com.volume.up.pojo.CheckItem"
+            parameterType="java.lang.Integer">
+        select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem where id in(select checkitem_id from t_checkgroup_checkitem where checkgroup_id=#{id})
+    </select>
+    <select id="findAllCheckItem" resultType="com.volume.up.pojo.CheckItem">
+        select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem where status=1
+    </select>
+
     <sql id="updateCheckItem">
         update
         t_checkitem

@@ -3,6 +3,7 @@ package com.voumel.up.web.mapper;
 import com.volume.up.pojo.CheckGroup;
 import com.voumel.up.entity.QueryPageBean;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,5 +29,11 @@ public interface CheckGroupMapper {
 
     List<CheckGroup> findCheckGroup(QueryPageBean queryPageBean);
 
-    Integer AddCheckItemToCheckGroup(Integer checkItemId, Integer checkGroupId);
+    Integer addCheckItemToCheckGroup(@Param("checkItemId") Integer checkItemId,@Param("checkGroupId") Integer checkGroupId);
+
+    List<CheckGroup> findCheckGroupAndCheckItem(QueryPageBean queryPageBean);
+
+    Integer addCheckGroup(Integer checkGroupId, Integer checkItemId);
+
+
 }

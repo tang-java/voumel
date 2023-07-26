@@ -21,7 +21,15 @@ public interface CheckGroupService {
 
     Integer updateCheckGroup(CheckGroup checkGroup);
 
+    Integer updateCheckGroup(CheckGroup checkGroup,Integer[] checkItemIds);
+
     PageResult findCheckGroup(QueryPageBean queryPageBean);
 
-    Integer AddCheckItemsToTheCheckGroupByCheckGroupId(String[] checkItemIds, Integer checkGroupId);
+    Integer AddCheckItemsToTheCheckGroupByCheckGroupId(Integer[] checkItemIds, Integer checkGroupId);
+
+    PageResult findAllCheckItemByCheckGroup(QueryPageBean queryPageBean);
+
+    CheckGroup findAllCheckItemByCheckGroupId(Integer checkGroupId);
+
+    Integer addCheckGroup(CheckGroup checkGroup, Integer[] checkItemIds);
 }

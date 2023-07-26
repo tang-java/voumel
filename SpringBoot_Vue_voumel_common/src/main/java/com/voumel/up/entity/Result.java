@@ -11,6 +11,7 @@ import java.util.List;
  * @date 2023/7/24 13:33:04
  */
 public class Result implements Serializable {
+    private static final long serialVersionUID = -8013249904461290997L;
     private boolean flag;
     private String message;
     private Object data;

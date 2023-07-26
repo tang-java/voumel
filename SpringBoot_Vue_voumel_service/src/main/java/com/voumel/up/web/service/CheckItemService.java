@@ -23,4 +23,7 @@ public interface CheckItemService {
     Integer updateCheckItemStatus(CheckItem checkItem);
 
     Integer updateCheckItem(CheckItem checkItem);
+
+    List<CheckItem> findAllCheckItem();
+
 }

@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -103,5 +104,17 @@ public class ChickItemController {
             }
         }
         return new Result(false, "要删除的检查项不存在！！");
+    }
+
+    @GetMapping("/checkItem")
+    public Result findAllCheckItem(){
+        try {
+            List<CheckItem> checkItemList=checkItemService.findAllCheckItem();
+            return new Result(true,"查询所有checkItem成功",checkItemList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"查询所有checkItem失败");
+        }
+
     }
 }

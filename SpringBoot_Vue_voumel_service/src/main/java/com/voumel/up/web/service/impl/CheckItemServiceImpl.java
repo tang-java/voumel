@@ -68,4 +68,9 @@ public class CheckItemServiceImpl implements CheckItemService {
     public Integer updateCheckItem(CheckItem checkItem) {
         return checkItemMapper.updateCheckItem(checkItem);
     }
+
+    @Override
+    public List<CheckItem> findAllCheckItem() {
+        return checkItemMapper.findAllCheckItem();
+    }
 }
