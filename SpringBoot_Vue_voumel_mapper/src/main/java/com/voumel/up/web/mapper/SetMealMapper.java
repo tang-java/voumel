@@ -3,6 +3,7 @@ package com.voumel.up.web.mapper;
 import com.volume.up.pojo.SetMeal;
 import com.voumel.up.entity.QueryPageBean;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,10 @@ import java.util.List;
 @Mapper
 public interface SetMealMapper {
     List<SetMeal> findSetMealByPageHelper(QueryPageBean queryPageBean);
+
+    SetMeal findSetMealById(Integer id);
+
+    Integer addSetMeal(SetMeal setMeal);
+
+    Integer addCheckGroupToSetMeal(@Param("setMealId") Integer setMealId,@Param("checkGroupId") Integer checkGroupId);
 }

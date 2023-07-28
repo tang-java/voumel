@@ -1,5 +1,7 @@
-com\voumel\up\entity\Result.class
 com\voumel\up\entity\PageResult.class
 com\voumel\up\constant\MessageConstant.class
-com\volume\up\vo\QueryPageBeanVo.class
 com\voumel\up\entity\QueryPageBean.class
+com\voumel\up\entity\Result.class
+com\voumel\up\util\QiniuUtils.class
+com\voumel\up\constant\RedisConstant.class
+com\volume\up\vo\QueryPageBeanVo.class

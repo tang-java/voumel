@@ -41,4 +41,20 @@ public class SetMealServiceImpl implements SetMealService {
         PageResult pageResult = new PageResult(total,setMealList);
         return pageResult;
     }
+
+    @Override
+    public SetMeal findSetMealById(Integer id) {
+        return setMealMapper.findSetMealById(id);
+    }
+
+    @Override
+    public void addSetMeal(SetMeal setMeal, Integer[] checkGroupIds) {
+        if (checkGroupIds.length>0){
+            setMeal.setStatus(1);
+            Integer setMealId = setMealMapper.addSetMeal(setMeal);
+            for (Integer checkGroupId : checkGroupIds) {
+                setMealMapper.addCheckGroupToSetMeal(setMealId,checkGroupId);
+            }
+        }
+    }
 }

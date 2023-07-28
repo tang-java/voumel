@@ -5,6 +5,8 @@ import com.volume.up.pojo.CheckGroup;
 import com.voumel.up.entity.PageResult;
 import com.voumel.up.entity.QueryPageBean;
 
+import java.util.List;
+
 /**
  * @author 小唐
  * @version 1.0
@@ -32,4 +34,6 @@ public interface CheckGroupService {
     CheckGroup findAllCheckItemByCheckGroupId(Integer checkGroupId);
 
     Integer addCheckGroup(CheckGroup checkGroup, Integer[] checkItemIds);
+
+    List<CheckGroup> findCheckGroup();
 }

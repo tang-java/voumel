@@ -41,7 +41,8 @@
         <result column="sex" property="sex"/>
         <result column="remark" property="remark"/>
         <result column="attention" property="attention"/>
-        <collection fetchType="eager" property="checkItems" select="com.voumel.up.web.mapper.CheckItemMapper.findCheckItemByCheckGroupId" column="id"/>
+        <collection fetchType="eager" property="checkItems"
+                    select="com.voumel.up.web.mapper.CheckItemMapper.findCheckItemByCheckGroupId" column="id"/>
     </resultMap>
     <select id="findCheckGroupAndCheckItem" resultMap="findCheckGroupAndCheckItem">
         select id,code,name,helpCode,sex,remark,attention from t_checkgroup
@@ -56,6 +57,9 @@
             </if>
         </where>
 
+    </select>
+    <select id="findALLCheckGroup" resultType="com.volume.up.pojo.CheckGroup">
+        select id,code,name,helpCode,sex,remark,attention,status from t_checkgroup where status=1
     </select>
 
     <insert id="addCheckItemToCheckGroup" parameterType="java.lang.Integer">

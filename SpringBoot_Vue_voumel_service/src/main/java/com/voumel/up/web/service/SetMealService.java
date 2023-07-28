@@ -1,5 +1,6 @@
 package com.voumel.up.web.service;
 
+import com.volume.up.pojo.SetMeal;
 import com.voumel.up.entity.PageResult;
 import com.voumel.up.entity.QueryPageBean;
 
@@ -12,4 +13,8 @@ import com.voumel.up.entity.QueryPageBean;
  */
 public interface SetMealService {
     PageResult findSetMeal(QueryPageBean queryPageBean);
+
+    SetMeal findSetMealById(Integer id);
+
+    void addSetMeal(SetMeal setMeal, Integer[] checkGroupIds);
 }

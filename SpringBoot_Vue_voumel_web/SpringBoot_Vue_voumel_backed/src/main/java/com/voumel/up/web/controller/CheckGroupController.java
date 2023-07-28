@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 小唐
@@ -183,6 +184,21 @@ public class CheckGroupController {
         }
     }
 
+    /**
+     * 查询所有检查组
+     * @return
+     */
+    @GetMapping("/checkGroup")
+    public Result findCheckGroup(){
+        try {
+            List<CheckGroup> checkGroupList=checkGroupService.findCheckGroup();
+            PageResult pageResult = new PageResult(Long.valueOf(checkGroupList.size()), checkGroupList);
+            return new Result(true,"查询所有检查组成功",pageResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"查询所有检查组失败");
+        }
+    }
 
     /**
      * 一个检查组中可以有多个检查项

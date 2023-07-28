@@ -145,4 +145,9 @@ public class CheckGroupServiceImpl implements CheckGroupService {
             return sum;
         }
     }
+
+    @Override
+    public List<CheckGroup> findCheckGroup() {
+        return checkGroupMapper.findALLCheckGroup();
+    }
 }

@@ -35,5 +35,6 @@ public interface CheckGroupMapper {
 
     Integer addCheckGroup(Integer checkGroupId, Integer checkItemId);
 
+    List<CheckGroup> findALLCheckGroup();
 
 }
