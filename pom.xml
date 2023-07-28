@@ -17,8 +17,7 @@
 
   <packaging>pom</packaging>
 
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+
 
   <distributionManagement>
     <site>
@@ -41,6 +40,7 @@
     <validation.version>2.0.2.RELEASE</validation.version>
     <springboot.version>2.0.2.RELEASE</springboot.version>
     <qiniu.version>7.2.1</qiniu.version>
+    <easyExcel.version>2.1.6</easyExcel.version>
   </properties>
 
   <!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version  -->
@@ -104,7 +104,11 @@
       <artifactId>qiniu-java-sdk</artifactId>
       <version>${qiniu.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>easyexcel</artifactId>
+      <version>${easyExcel.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

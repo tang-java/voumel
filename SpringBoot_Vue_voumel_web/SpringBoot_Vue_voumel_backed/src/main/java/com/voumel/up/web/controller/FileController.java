@@ -1,17 +1,19 @@
 package com.voumel.up.web.controller;
 
-import com.volume.up.pojo.SetMeal;
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.read.builder.ExcelReaderBuilder;
 import com.voumel.up.constant.MessageConstant;
+import com.voumel.up.entity.ExcelOrderSetting;
 import com.voumel.up.entity.Result;
+import com.voumel.up.web.listener.ExcelOrderSettingReadListener;
 import com.voumel.up.web.service.FileService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 /**
@@ -28,6 +30,9 @@ public class FileController {
 
     @Value("${qiniu.QiniuUrl}")
     private String imageUrl;
+
+    @Resource
+    private ExcelOrderSettingReadListener excelOrderSettingReadListener;
     /**
      * 将文件上传到云存储
      * 将上传的图片的地址记录在redis中
@@ -38,19 +43,43 @@ public class FileController {
      */
     @PutMapping("/file/image")
     public Result uploadImage(@RequestBody MultipartFile multipartFile) {
-        //TODO filename是返回的地址，要传到前端,并且要传到redis中存储，方便实现云存储定时垃圾清理
         try {
             byte[] fileBytes = multipartFile.getBytes();
             String fileName = multipartFile.getOriginalFilename();
             String suffix = fileName.substring(fileName.length() - 4);
             String prefix = fileName.substring(0, fileName.length() - 4);
             fileName = prefix + UUID.randomUUID() + suffix;
-            fileService.uploadFile(fileBytes,imageUrl+fileName);
-            return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, imageUrl+fileName);
+            fileService.uploadFile(fileBytes, imageUrl + fileName);
+            return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, imageUrl + fileName);
         } catch (Exception e) {
             e.printStackTrace();
             return new Result(false, MessageConstant.PIC_UPLOAD_FAIL);
         }
     }
+
+    /**
+     * 传入Excel表，进行解析，将数据存入数据库
+     * 解析技术采用  EasyExcel
+     * @param excelFile --传入的文件
+     * @return result
+     */
+    @PostMapping("/file/excel")
+    public Result uploadOrderSetting(@RequestBody MultipartFile excelFile) {
+        //拿到Excel表之后，要解析，然后插入数据库
+        try {
+            InputStream excelFileInputStream = excelFile.getInputStream();
+            EasyExcel.read(excelFileInputStream, ExcelOrderSetting.class,excelOrderSettingReadListener).sheet().doRead();
+            return new Result(true,MessageConstant.IMPORT_ORDERSETTING_SUCCESS);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new Result(false,MessageConstant.IMPORT_ORDERSETTING_FAIL);
+        }
+    }
+
+//    @GetMapping("/file/excel")
+//    public Result downloadOrderSettingExcel(){
+//        //TODO 请求返回一个预约设置的Excel表
+//    }
+
 
 }

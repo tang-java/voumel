@@ -103,7 +103,6 @@ public class CheckGroupServiceImpl implements CheckGroupService {
 
     @Override
     public PageResult findAllCheckItemByCheckGroup(QueryPageBean queryPageBean) {
-        //----TODO 联表查询---分组查询---一对多
         Integer currentPage = queryPageBean.getCurrentPage();
         Integer pageSize = queryPageBean.getPageSize();
         if (currentPage == 0 || currentPage == null) {

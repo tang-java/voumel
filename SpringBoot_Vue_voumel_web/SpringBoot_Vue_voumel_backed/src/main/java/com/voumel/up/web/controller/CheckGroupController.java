@@ -38,7 +38,6 @@ public class CheckGroupController {
     @PutMapping({"/checkGroup/{ids}", "/checkGroup"})
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Result addCheckGroup(@RequestBody @Validated CheckGroup checkGroup, @PathVariable("ids") Integer[] checkItemIds) {
-        //TODO 检查组新增页面
         if (checkGroup != null) {
             try {
                 checkGroupService.addCheckGroup(checkGroup, checkItemIds);
@@ -209,7 +208,6 @@ public class CheckGroupController {
     /*
     @PostMapping("/checkGroup")
     public Result AddCheckItemsToTheCheckGroupByCheckGroupId(@PathVariable Integer[] checkItemIds, @PathVariable Integer checkGroupId) {
-        //TODO 还未测试,与新增接口重叠
         try {
             Integer count = checkGroupService.AddCheckItemsToTheCheckGroupByCheckGroupId(checkItemIds, checkGroupId);
             return new Result(true, "在检查组中新增检查项成功---新增" + count + "个检查项");

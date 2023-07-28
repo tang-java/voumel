@@ -1,11 +1,16 @@
 package com.voumel.up;
 
 
+import com.voumel.up.web.service.FileService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author 小唐
@@ -20,6 +25,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling
 public class ApplicationBacked {
     public static void main(String[] args) {
-        SpringApplication.run(ApplicationBacked.class);
+        ApplicationContext run = SpringApplication.run(ApplicationBacked.class);
+        Map<String,CountDownLatch> bean = run.getBeansOfType(CountDownLatch.class);
+        FileService bean1 = run.getBean(FileService.class);
+        System.out.println(bean);
     }
 }

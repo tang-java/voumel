@@ -1,14 +1,21 @@
 package com.voumel.up.web.task;
 
+import com.voumel.up.constant.RedisConstant;
 import com.voumel.up.util.QiniuUtils;
 import com.voumel.up.web.service.SetMealService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,16 +30,33 @@ public class Task {
     Logger log = LoggerFactory.getLogger(Task.class);
     @Resource
     private QiniuUtils qiniuUtils;
+
     @Resource
     private StringRedisTemplate stringRedisTemplate;
+
     @Resource
-    private SetMealService setMealService;
+    private CountDownLatch countDownLatch;
 
-    @Scheduled(cron = "0/8 * * * * ?")
+    @Value("${qiniu.QiniuUrl}")
+    private String imageUrl;
+
+
+    @Scheduled(cron = "0/30 * * * * ?")
     public void cleanQiniu() {
-        log.info(Thread.currentThread().getName() + ":======>开始清理云存储垃圾");
-        // 查询所有套餐的img,并存入redis
-
-//        stringRedisTemplate.opsForValue().set("lisi","zhangsan");
+        Set<String> set = stringRedisTemplate.opsForSet().difference(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,RedisConstant.URL_OF_ADD_SETMEAL_TO_DB);
+        Iterator<String> iterator = set.iterator();
+        while (iterator.hasNext()){
+            log.info(Thread.currentThread().getName() + ":======>开始清理云存储垃圾");
+            try {
+                countDownLatch.await(5000, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String next = iterator.next();
+            String[] split = next.split(imageUrl);
+            String s = split[1];
+            qiniuUtils.deleteFileFromQiniu(s);
+            stringRedisTemplate.opsForSet().remove(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,next);
+        }
     }
 }

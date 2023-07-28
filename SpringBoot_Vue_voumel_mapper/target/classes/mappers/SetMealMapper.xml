@@ -24,11 +24,14 @@
         select id,name,code,helpCode,sex,age,price,remark,attention,img,status from t_setmeal where id=#{id} and status=1
     </select>
 
-    <insert id="addSetMeal" parameterType="com.volume.up.pojo.SetMeal" useGeneratedKeys="true" keyProperty="id">
-        insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img,status) values (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{attention},#{img},#{status})
+    <insert id="addSetMeal" parameterType="com.volume.up.pojo.SetMeal" useGeneratedKeys="true">
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img,status) values (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img},#{status})
     </insert>
     <insert id="addCheckGroupToSetMeal">
-        insert into t_setmeal_checkgroup(setmael_id,checkgroup_id) values (#{setMealId},#{checkGroupId})
+        insert into t_setmeal_checkgroup(setmeal_id,checkgroup_id) values(#{setMealId},#{checkGroupId})
     </insert>
 
 </mapper>
