@@ -29,7 +29,7 @@ public class ChickItemController {
     private CheckItemService checkItemService;
 
     @GetMapping("/checkItem/{page}/{pageSize}")
-    public Result findItemByConditionAndPaging(@PathVariable("page") Integer currentPage, @PathVariable Integer pageSize,String queryString) {
+    public Result findItemByConditionAndPaging(@PathVariable("page") Integer currentPage, @PathVariable Integer pageSize, String queryString) {
         Result checkItemResult = new Result();
         QueryPageBean queryPageBean = new QueryPageBean();
         PageResult pageResult = null;
@@ -106,14 +106,20 @@ public class ChickItemController {
         return new Result(false, "要删除的检查项不存在！！");
     }
 
+    /**
+     * 将查询到的数据存入Redis，并且在这个接口被调用的时候，首先查询Redis数据库中是否有记录
+     * @return result ---- 所有的CheckItem对象
+     */
     @GetMapping("/checkItem")
-    public Result findAllCheckItem(){
+    public Result findAllCheckItem() {
+        // 将查询到的数据存入Redis，并且在这个接口被调用的时候，首先查询Redis数据库中是否有记录
+
         try {
-            List<CheckItem> checkItemList=checkItemService.findAllCheckItem();
-            return new Result(true,"查询所有checkItem成功",checkItemList);
+            List<CheckItem> checkItemList = checkItemService.findAllCheckItem();
+            return new Result(true, "查询所有checkItem成功", checkItemList);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Result(false,"查询所有checkItem失败");
+            return new Result(false, "查询所有checkItem失败");
         }
 
     }

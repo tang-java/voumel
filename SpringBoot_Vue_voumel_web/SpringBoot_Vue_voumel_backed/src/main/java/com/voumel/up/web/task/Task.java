@@ -6,6 +6,7 @@ import com.voumel.up.web.service.SetMealService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -37,18 +38,20 @@ public class Task {
     @Resource
     private CountDownLatch countDownLatch;
 
+    @Resource
+    private RedisTemplate redisTemplate;
     @Value("${qiniu.QiniuUrl}")
     private String imageUrl;
 
 
     @Scheduled(cron = "0/30 * * * * ?")
     public void cleanQiniu() {
-        Set<String> set = stringRedisTemplate.opsForSet().difference(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,RedisConstant.URL_OF_ADD_SETMEAL_TO_DB);
+        Set<String> set = redisTemplate.opsForSet().difference(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,RedisConstant.URL_OF_ADD_SETMEAL_TO_DB);
         Iterator<String> iterator = set.iterator();
         while (iterator.hasNext()){
             log.info(Thread.currentThread().getName() + ":======>开始清理云存储垃圾");
             try {
-                countDownLatch.await(5000, TimeUnit.MILLISECONDS);
+                countDownLatch.await(500000, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -56,7 +59,7 @@ public class Task {
             String[] split = next.split(imageUrl);
             String s = split[1];
             qiniuUtils.deleteFileFromQiniu(s);
-            stringRedisTemplate.opsForSet().remove(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,next);
+            redisTemplate.opsForSet().remove(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,next);
         }
     }
 }
