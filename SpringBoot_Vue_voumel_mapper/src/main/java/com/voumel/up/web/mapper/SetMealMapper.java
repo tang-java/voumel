@@ -18,9 +18,11 @@ import java.util.List;
 public interface SetMealMapper {
     List<SetMeal> findSetMealByPageHelper(QueryPageBean queryPageBean);
 
-    SetMeal findSetMealById(Integer id);
+    SetMeal findSetMealById(Integer setMealId);
 
     Integer addSetMeal(SetMeal setMeal);
 
     Integer addCheckGroupToSetMeal(@Param("setMealId") Integer setMealId,@Param("checkGroupId") Integer checkGroupId);
+
+    Integer updateSetMeal(SetMeal setMeal);
 }

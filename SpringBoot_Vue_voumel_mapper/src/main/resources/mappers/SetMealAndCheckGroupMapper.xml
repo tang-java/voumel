@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voumel.up.web.mapper.SetMealAndCheckGroupMapper">
+    <insert id="batchAddCheckGroupToSetMeal" useGeneratedKeys="true">
+        <foreach collection="array" item="checkGroupId">
+            insert into t_setmeal_checkgroup(setmael_id,checkgroup_id) values (#{setmeal_id},#{checkGroupId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteCheckGroupOfSetMeal" parameterType="java.lang.Integer">
+        delete t_setmeal_checkgroup where setmeal_id=#{setMealId}
+    </delete>
+
+    <resultMap id="findAllCheckGroupBySetMealId" type="com.volume.up.pojo.CheckGroup">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="status" property="status"/>
+        <collection property="checkItems" column="id" select="com.voumel.up.web.mapper.CheckGroupAndCheckItemMapper.findCheckItemOfCheckGroupOfSetMeal"/>
+    </resultMap>
+
+    <select id="findCheckGroupBySetMealId" resultMap="findAllCheckGroupBySetMealId" parameterType="java.lang.Integer">
+        select id,code,name,helpCode,sex,remark,attention,status from t_checkgroup
+        <where>
+            id in(select checkgroup_id from t_setmeal_checkgroup where setmeal_id=#{setMealId})
+        </where>
+        and status=1
+    </select>
+</mapper>

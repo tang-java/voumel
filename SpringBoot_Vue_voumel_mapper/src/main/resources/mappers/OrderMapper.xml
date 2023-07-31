@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voumel.up.web.mapper.OrderMapper">
+
+    <select id="findAllOrderByOrderStatus" resultType="com.volume.up.pojo.Order" parameterType="java.lang.Integer">
+        select
+            o.id,
+            o.member_id,
+            o.orderDate,
+            o.orderType,
+            o.orderStatus,
+            o.setmeal_id,
+            od.orderStatusDesc
+        from
+            t_order as o,
+            t_order_dict as od
+        where
+            o.orderStatus=#{orderStatus}
+        and
+            od.orderStatus=o.orderStatus
+    </select>
+</mapper>

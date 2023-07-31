@@ -6,6 +6,7 @@ import com.volume.up.pojo.SetMeal;
 import com.voumel.up.constant.RedisConstant;
 import com.voumel.up.entity.PageResult;
 import com.voumel.up.entity.QueryPageBean;
+import com.voumel.up.web.mapper.SetMealAndCheckGroupMapper;
 import com.voumel.up.web.mapper.SetMealMapper;
 import com.voumel.up.web.service.SetMealService;
 import org.springframework.beans.BeansException;
@@ -38,6 +39,9 @@ public class SetMealServiceImpl implements SetMealService {
     private StringRedisTemplate stringRedisTemplate;
 
     @Resource
+    private SetMealAndCheckGroupMapper setMealAndCheckGroupMapper;
+
+    @Resource
     private CountDownLatch countDownLatch;
 
     @Override
@@ -60,6 +64,8 @@ public class SetMealServiceImpl implements SetMealService {
 
     @Override
     public SetMeal findSetMealById(Integer id) {
+        //一：
+
         return setMealMapper.findSetMealById(id);
     }
 
@@ -77,5 +83,22 @@ public class SetMealServiceImpl implements SetMealService {
             }
             countDownLatch.countDown();
         }
+    }
+
+    @Override
+    public Integer updateSetMeal(SetMeal setMeal,Integer[] checkGroupIds) {
+        Integer count = setMealMapper.updateSetMeal(setMeal);
+        //先删除，再添加
+        setMealAndCheckGroupMapper.deleteCheckGroupOfSetMeal(setMeal.getId());
+        if (checkGroupIds.length>0){
+            setMealAndCheckGroupMapper.batchAddCheckGroupToSetMeal(checkGroupIds,setMeal.getId());
+        }
+        return count;
+    }
+
+    @Override
+    public Integer updateSetMeal(SetMeal setMeal) {
+        Integer count = setMealMapper.updateSetMeal(setMeal);
+        return count;
     }
 }

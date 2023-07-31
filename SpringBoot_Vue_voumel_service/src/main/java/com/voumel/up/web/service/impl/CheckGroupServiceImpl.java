@@ -139,10 +139,8 @@ public class CheckGroupServiceImpl implements CheckGroupService {
                     sum = sum + count;
                 }
             }
-            return sum;
-        } else {
-            return sum;
         }
+        return sum;
     }
 
     @Override

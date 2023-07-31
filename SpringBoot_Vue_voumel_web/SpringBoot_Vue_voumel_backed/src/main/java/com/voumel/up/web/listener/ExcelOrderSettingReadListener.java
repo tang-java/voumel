@@ -33,7 +33,7 @@ public class ExcelOrderSettingReadListener extends AnalysisEventListener<ExcelOr
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
         //调用Service插入数据库
         if (excelOrderSettingList.size()>0){
-            excelOrderSettingService.addOrderSetting(excelOrderSettingList);
+            excelOrderSettingService.BatchAddOrderSetting(excelOrderSettingList);
         }
     }
 }

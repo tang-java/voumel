@@ -3,6 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.voumel.up.web.mapper.SetMealMapper">
+    <update id="updateSetMeal" parameterType="com.volume.up.pojo.SetMeal">
+        update
+            t_setmeal
+        set
+            `name`=#{name},
+            code=#{code},
+            helpCode=#{helpCode},
+            sex=#{sex},
+            age=#{age},
+            price=#{price},
+            remark=#{remark},
+            attention=#{attention},
+            img=#{img},
+            status=#{status}
+    </update>
     <select id="findSetMealByPageHelper" parameterType="com.voumel.up.entity.QueryPageBean"
             resultType="com.volume.up.pojo.SetMeal">
         select id,name,code,helpCode,sex,age,price,remark,attention,img,status from t_setmeal
@@ -20,15 +35,31 @@
             </if>
         </where>
     </select>
-    <select id="findSetMealById" parameterType="java.lang.Integer" resultType="com.volume.up.pojo.SetMeal">
-        select id,name,code,helpCode,sex,age,price,remark,attention,img,status from t_setmeal where id=#{id} and status=1
+    <resultMap id="findAllDataBySetMealId" type="com.volume.up.pojo.SetMeal">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+        <result column="status" property="status"/>
+        <collection property="checkGroups" ofType="com.volume.up.pojo.CheckGroup" select="com.voumel.up.web.mapper.SetMealAndCheckGroupMapper.findCheckGroupBySetMealId" column="id"/>
+    </resultMap>
+
+    <select id="findSetMealById" parameterType="java.lang.Integer" resultMap="findAllDataBySetMealId">
+        select id,name,code,helpCode,sex,age,price,remark,attention,img,status from t_setmeal where id=#{setMealId} and status=1
     </select>
 
     <insert id="addSetMeal" parameterType="com.volume.up.pojo.SetMeal" useGeneratedKeys="true">
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
             select LAST_INSERT_ID()
         </selectKey>
-        insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img,status) values (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img},#{status})
+        insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img,status) values
+        (#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img},#{status})
     </insert>
     <insert id="addCheckGroupToSetMeal">
         insert into t_setmeal_checkgroup(setmeal_id,checkgroup_id) values(#{setMealId},#{checkGroupId})

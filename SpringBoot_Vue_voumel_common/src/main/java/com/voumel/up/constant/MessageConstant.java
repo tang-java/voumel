@@ -64,4 +64,8 @@ public class MessageConstant {
     public static final String GET_BUSINESS_REPORT_FAIL = "获取运营统计数据失败";
     public static final String GET_SETMEAL_LIST_SUCCESS = "查询套餐列表数据成功";
     public static final String GET_SETMEAL_LIST_FAIL = "查询套餐列表数据失败";
+    public static final String EDIT_SETMEAL_SUCCESS = "修改套餐数据成功";
+    public static final String EDIT_SETMEAL_FAIL = "修改套餐数据失败";
+    public static final String QUERY_APPOINTMNET__STATUS_SUCCESS = "根据状态查询预约信息成功";
+    public static final String QUERY_APPOINTMNET_STATUS_FILE = "根据状态查询预约信息成功";
 }

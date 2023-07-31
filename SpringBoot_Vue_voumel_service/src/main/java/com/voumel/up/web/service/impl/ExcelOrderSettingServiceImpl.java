@@ -21,8 +21,8 @@ public class ExcelOrderSettingServiceImpl implements ExcelOrderSettingService {
     @Resource
     private ExcelOrderSettingMapper excelOrderSettingMapper;
     @Override
-    public void addOrderSetting(List<ExcelOrderSetting> excelOrderSettingList) {
-        //TODO 实际开发不能这样，需要考虑数据的条数
+    public void BatchAddOrderSetting(List<ExcelOrderSetting> excelOrderSettingList) {
+        //TODO 实际开发不能这样，需要考虑数据的条数   批量插入
         // 如果是多条，那么就会导致cpu消耗大-----需要优化
         for (ExcelOrderSetting excelOrderSetting : excelOrderSettingList) {
             excelOrderSettingMapper.addOrderSetting(excelOrderSetting);

@@ -9,6 +9,7 @@ import com.voumel.up.web.service.SetMealService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 /**
  * @author 小唐
@@ -61,5 +62,61 @@ public class SetMealController {
             }
         }
         return new Result(false, MessageConstant.ADD_SETMEAL_FAIL + "可能的原因是参数没有封装");
+    }
+
+    /**
+     * 删除套餐，将套餐的status修改为0
+     * @param setMealId ----套餐id
+     * @return result
+     */
+    @GetMapping("/setMeal/{setMealId}")
+    public Result deleteSetMeal(@PathVariable Integer setMealId){
+        SetMeal setMeal = setMealService.findSetMealById(setMealId);
+        if (setMeal!=null){
+            setMeal.setStatus(0);
+            try {
+                setMealService.updateSetMeal(setMeal);
+                return new Result(true,MessageConstant.EDIT_SETMEAL_SUCCESS);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return new Result(false,MessageConstant.EDIT_SETMEAL_FAIL);
+            }
+        }
+        return new Result(false,MessageConstant.EDIT_SETMEAL_FAIL);
+    }
+
+    /**
+     * 修改套餐以及套餐详情，并且可以修改套餐关联的检查组
+     *
+     * 修改关联关系之前，要先删除与该套餐id 有关系的中间表的数据，再插入关联数据
+     * @param setMeal ---套餐
+     * @param checkGroupIds ---套餐关联的检查组
+     * @return result
+     */
+    @PutMapping("/setMeal/{ids}")
+    public Result updateSetMeal(@RequestBody SetMeal setMeal,@PathVariable("ids") Integer[] checkGroupIds){
+        try {
+            setMealService.updateSetMeal(setMeal,checkGroupIds);
+            return new Result(true,MessageConstant.EDIT_SETMEAL_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,MessageConstant.EDIT_SETMEAL_FAIL);
+        }
+    }
+
+    /**
+     * 通过id查询套餐的详情
+     * @param setMealId ---套餐的id
+     * @return result  包含检查组以及检查组中的检查项
+     */
+    @GetMapping("/setMealFind/{setMealId}")
+    public Result findSetMealById(@PathVariable Integer setMealId){
+        try {
+            SetMeal setMeal = setMealService.findSetMealById(setMealId);
+            return new Result(true,MessageConstant.QUERY_SETMEAL_SUCCESS,setMeal);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,MessageConstant.QUERY_SETMEAL_FAIL);
+        }
     }
 }

@@ -1,5 +1,7 @@
+com\voumel\up\web\mapper\OrderMapper.class
+com\voumel\up\web\mapper\ExcelOrderSettingMapper.class
 com\voumel\up\web\mapper\CheckGroupAndCheckItemMapper.class
+com\voumel\up\web\mapper\SetMealAndCheckGroupMapper.class
 com\voumel\up\web\mapper\CheckGroupMapper.class
 com\voumel\up\web\mapper\CheckItemMapper.class
-com\voumel\up\web\mapper\ExcelOrderSettingMapper.class
 com\voumel\up\web\mapper\SetMealMapper.class

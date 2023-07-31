@@ -15,32 +15,53 @@ public class Order implements Serializable{
     private Integer memberId;//会员id
     private Date orderDate;//预约日期
     private String orderType;//预约类型 电话预约/微信预约
-    private String orderStatus;//预约状态（是否到诊）
-    private Integer setmealId;//体检套餐id
+    private Integer orderStatus;//预约状态（是否到诊）
+    private Integer setMealId;//体检套餐id
+    private String orderStatusDesc;
 
     public Order() {
+    }
+
+    public Order(Integer id, Integer memberId, Date orderDate, String orderType, Integer orderStatus, Integer setMealId, String orderStatusDesc) {
+        this.id = id;
+        this.memberId = memberId;
+        this.orderDate = orderDate;
+        this.orderType = orderType;
+        this.orderStatus = orderStatus;
+        this.setMealId = setMealId;
+        this.orderStatusDesc = orderStatusDesc;
+    }
+
+    public Order(Integer id, Integer memberId, Date orderDate, String orderType, Integer orderStatus, Integer setMealId) {
+        this.id = id;
+        this.memberId = memberId;
+        this.orderDate = orderDate;
+        this.orderType = orderType;
+        this.orderStatus = orderStatus;
+        this.setMealId = setMealId;
+    }
+
+    public String getOrderStatusDesc() {
+        return orderStatusDesc;
+    }
+
+    public void setOrderStatusDesc(String orderStatusDesc) {
+        this.orderStatusDesc = orderStatusDesc;
+    }
+
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Order(Integer id) {
         this.id = id;
     }
 
-    public Order(Integer memberId, Date orderDate, String orderType, String orderStatus, Integer setmealId) {
-        this.memberId = memberId;
-        this.orderDate = orderDate;
-        this.orderType = orderType;
-        this.orderStatus = orderStatus;
-        this.setmealId = setmealId;
-    }
 
-    public Order(Integer id, Integer memberId, Date orderDate, String orderType, String orderStatus, Integer setmealId) {
-        this.id = id;
-        this.memberId = memberId;
-        this.orderDate = orderDate;
-        this.orderType = orderType;
-        this.orderStatus = orderStatus;
-        this.setmealId = setmealId;
-    }
 
     public Integer getId() {
         return id;
@@ -74,19 +95,12 @@ public class Order implements Serializable{
         this.orderType = orderType;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+
+    public Integer getSetMealId() {
+        return setMealId;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public Integer getSetmealId() {
-        return setmealId;
-    }
-
-    public void setSetmealId(Integer setmealId) {
-        this.setmealId = setmealId;
+    public void setSetMealId(Integer setMealId) {
+        this.setMealId = setMealId;
     }
 }

@@ -33,9 +33,6 @@ public class Task {
     private QiniuUtils qiniuUtils;
 
     @Resource
-    private StringRedisTemplate stringRedisTemplate;
-
-    @Resource
     private CountDownLatch countDownLatch;
 
     @Resource
@@ -48,18 +45,19 @@ public class Task {
     public void cleanQiniu() {
         Set<String> set = redisTemplate.opsForSet().difference(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,RedisConstant.URL_OF_ADD_SETMEAL_TO_DB);
         Iterator<String> iterator = set.iterator();
+        try {
+            countDownLatch.await(500000, TimeUnit.MILLISECONDS);
+            log.info(":======>共有{}个垃圾，开始清理云存储垃圾",set.size());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         while (iterator.hasNext()){
-            log.info(Thread.currentThread().getName() + ":======>开始清理云存储垃圾");
-            try {
-                countDownLatch.await(500000, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             String next = iterator.next();
             String[] split = next.split(imageUrl);
             String s = split[1];
             qiniuUtils.deleteFileFromQiniu(s);
             redisTemplate.opsForSet().remove(RedisConstant.URL_OF_ADD_SETMEAL_TO_REDIS,next);
         }
+        log.info("=======>清理云存储垃圾成功，共清理{}个垃圾",set.size());
     }
 }

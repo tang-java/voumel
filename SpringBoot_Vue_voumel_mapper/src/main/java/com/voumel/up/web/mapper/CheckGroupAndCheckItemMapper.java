@@ -1,7 +1,10 @@
 package com.voumel.up.web.mapper;
 
+import com.volume.up.pojo.CheckItem;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author 小唐
@@ -13,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface CheckGroupAndCheckItemMapper {
     Integer deleteRelationshipOfCheckGroupAndCheckItem(@Param("checkGroupId") Integer checkGroupId);
+
+    List<CheckItem> findCheckItemOfCheckGroupOfSetMeal(@Param("checkGroup_Id") Integer checkGroupId);
 }

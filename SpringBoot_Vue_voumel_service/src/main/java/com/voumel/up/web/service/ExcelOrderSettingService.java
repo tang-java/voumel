@@ -14,5 +14,5 @@ import java.util.List;
  */
 
 public interface ExcelOrderSettingService {
-    void addOrderSetting(List<ExcelOrderSetting> excelOrderSettingList);
+    void BatchAddOrderSetting(List<ExcelOrderSetting> excelOrderSettingList);
 }

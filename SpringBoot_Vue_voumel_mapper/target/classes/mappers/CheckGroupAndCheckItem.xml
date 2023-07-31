@@ -7,4 +7,11 @@
     <delete id="deleteRelationshipOfCheckGroupAndCheckItem">
         delete from t_checkgroup_checkitem where checkgroup_id=#{checkGroupId}
     </delete>
+    <select id="findCheckItemOfCheckGroupOfSetMeal" resultType="com.volume.up.pojo.CheckItem" parameterType="java.lang.Integer">
+        select id,code,name,sex,age,price,type,attention,remark,status from t_checkitem
+        <where>
+        id in(select checkitem_id from t_checkgroup_checkitem where checkgroup_id=#{checkGroup_Id})
+        </where>
+        and status=1
+    </select>
 </mapper>

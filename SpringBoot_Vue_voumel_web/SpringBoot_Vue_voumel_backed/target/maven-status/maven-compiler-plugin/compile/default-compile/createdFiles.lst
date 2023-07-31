@@ -3,6 +3,7 @@ com\voumel\up\web\config\AsyncTaskConfig.class
 com\voumel\up\web\task\Task.class
 com\voumel\up\ApplicationBacked.class
 com\voumel\up\web\controller\ChickItemController.class
+com\voumel\up\web\controller\AppointmentController.class
 com\voumel\up\web\config\QiniuConfig.class
 com\voumel\up\web\controller\SetMealController.class
 com\voumel\up\web\listener\ExcelOrderSettingReadListener.class

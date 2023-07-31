@@ -19,6 +19,7 @@
     <select id="findCheckGroupById" resultMap="findCheckGroupAndCheckItem" parameterType="java.lang.Integer">
         select id,code,name,helpCode,sex,remark,attention from t_checkgroup where id =#{id} and status=1
     </select>
+
     <select id="findCheckGroup" resultType="com.volume.up.pojo.CheckGroup"
             parameterType="com.voumel.up.entity.QueryPageBean">
         select id,code,name,helpCode,sex,remark,attention from t_checkgroup

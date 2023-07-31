@@ -14,7 +14,18 @@ import com.voumel.up.entity.QueryPageBean;
 public interface SetMealService {
     PageResult findSetMeal(QueryPageBean queryPageBean);
 
-    SetMeal findSetMealById(Integer id);
+    /**
+     * 这里有两个选择，
+     * 一：在服务层进行分别查询，然后封装
+     * 二：在持久层进行联表查询
+     * @param setMealId
+     * @return
+     */
+    SetMeal findSetMealById(Integer setMealId);
 
     void addSetMeal(SetMeal setMeal, Integer[] checkGroupIds);
+
+    Integer updateSetMeal(SetMeal setMeal, Integer[] checkGroupIds);
+
+    Integer updateSetMeal(SetMeal setMeal);
 }

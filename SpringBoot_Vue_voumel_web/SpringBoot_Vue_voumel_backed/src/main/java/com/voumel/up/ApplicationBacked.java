@@ -25,9 +25,6 @@ import java.util.concurrent.CountDownLatch;
 @EnableScheduling
 public class ApplicationBacked {
     public static void main(String[] args) {
-        ApplicationContext run = SpringApplication.run(ApplicationBacked.class);
-        Map<String,CountDownLatch> bean = run.getBeansOfType(CountDownLatch.class);
-        FileService bean1 = run.getBean(FileService.class);
-        System.out.println(bean);
+        SpringApplication.run(ApplicationBacked.class);
     }
 }
