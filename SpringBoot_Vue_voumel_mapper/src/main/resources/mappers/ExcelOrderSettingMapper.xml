@@ -7,4 +7,10 @@
     <insert id="addOrderSetting" parameterType="com.voumel.up.entity.ExcelOrderSetting">
         insert into t_ordersetting(orderDate,number) values (#{orderDate},#{number})
     </insert>
+    <insert id="batchAddOrderSetting" parameterType="java.util.List">
+        insert into t_ordersetting(orderDate,number) values
+        <foreach collection="list" item="orderSetting" index="index" separator=",">
+            (#{orderSetting.orderDate},#{orderSetting.number})
+        </foreach>
+    </insert>
 </mapper>

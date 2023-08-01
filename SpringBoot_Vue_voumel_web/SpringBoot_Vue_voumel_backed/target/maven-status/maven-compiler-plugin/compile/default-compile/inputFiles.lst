@@ -1,12 +1,11 @@
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\ChickItemController.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\FileController.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\listener\ExcelOrderSettingReadListener.java
+D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\TcmConstitutionIdentificationController.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\SetMealController.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\CheckGroupController.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\task\Task.java
-D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\config\AsyncTaskConfig.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\ApplicationBacked.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\AppointmentController.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\config\QiniuConfig.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\controller\OrderSettingController.java
-D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_web\SpringBoot_Vue_voumel_backed\src\main\java\com\voumel\up\web\config\CountDownLatchConfig.java

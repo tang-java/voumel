@@ -29,7 +29,7 @@ public interface CheckGroupMapper {
 
     List<CheckGroup> findCheckGroup(QueryPageBean queryPageBean);
 
-    Integer addCheckItemToCheckGroup(@Param("checkItemId") Integer checkItemId,@Param("checkGroupId") Integer checkGroupId);
+    Integer addCheckItemToCheckGroup(@Param("checkItemId") Integer checkItemId, @Param("checkGroupId") Integer checkGroupId);
 
     List<CheckGroup> findCheckGroupAndCheckItem(QueryPageBean queryPageBean);
 
@@ -37,4 +37,5 @@ public interface CheckGroupMapper {
 
     List<CheckGroup> findALLCheckGroup();
 
+    Integer batchAddCheckItemToCheckGroup(@Param("checkItemIds") Integer[] checkItemIds,@Param("checkGroupId") Integer checkGroupId);
 }

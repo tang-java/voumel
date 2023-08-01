@@ -68,4 +68,8 @@ public class MessageConstant {
     public static final String EDIT_SETMEAL_FAIL = "修改套餐数据失败";
     public static final String QUERY_APPOINTMNET__STATUS_SUCCESS = "根据状态查询预约信息成功";
     public static final String QUERY_APPOINTMNET_STATUS_FILE = "根据状态查询预约信息成功";
+    public static final String QUERY_CHINESE_MEDICAL_SUCCESS = "查询中医体质数据成功";
+    public static final String QUERY_CHINESE_MEDICAL_FAIL = "查询中医体质数据失败";
+    public static final String SEND_SMS_SUCCESS = "短信发送成功";
+    public static final String SEND_SMS_FAIL = "短信发送失败";
 }

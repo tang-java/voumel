@@ -32,3 +32,9 @@ qiniu:
   SecretKey: 2mo83Bf4xisXXoU_TvVbpye2umKadE35kbKJYoX4
   Name: test-9527
   QiniuUrl: http://ryecjyj02.hn-bkt.clouddn.com/
+
+tenxun:
+  secretId: AKIDxpJksmW9i5DAxc4JOGwPeLsBH9nDPRHv
+  secretKey: UkkbFfrpZ6RaUDnAKFzZv2vc5KJ7kAMK
+  sign: 只是坑NB公众号
+  appid: 1400843889

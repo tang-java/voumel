@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voumel.up.web.mapper.TcmConstitutionIdentificationMapper">
+
+    <select id="findAll" resultType="com.volume.up.pojo.TbTcmConstitutionIdentification">
+        select
+        id,
+        constitution_name as constitutionName,
+        constitution_desc as constitutionDesc,
+        suitable_food as suitableFood,
+        no_Suitable_food as noSuitableFood,
+        suitable_crowd as suitableCrowd,
+        dosing,
+        efficacy,
+        chinese_medicine_name as chineseMedicineName
+        from tb_tcm_constitution_identification
+    </select>
+</mapper>

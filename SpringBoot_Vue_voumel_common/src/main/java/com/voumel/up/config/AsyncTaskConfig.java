@@ -1,10 +1,12 @@
-package com.voumel.up.web.config;
+package com.voumel.up.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 import java.util.concurrent.Executor;
 
@@ -16,7 +18,7 @@ import java.util.concurrent.Executor;
  * @date 2023/7/27 19:26:20
  */
 @Configuration
-public class AsyncTaskConfig implements AsyncConfigurer {
+public class AsyncTaskConfig implements AsyncConfigurer, SchedulingConfigurer {
     @Bean("asyncExecutor")
     @Override
     public Executor getAsyncExecutor() {
@@ -41,5 +43,10 @@ public class AsyncTaskConfig implements AsyncConfigurer {
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
+    }
+
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+
     }
 }

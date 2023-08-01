@@ -33,9 +33,6 @@ public class CheckItemServiceImpl implements CheckItemService {
     Logger log= LoggerFactory.getLogger(CheckItemServiceImpl.class);
     @Resource
     private CheckItemMapper checkItemMapper;
-
-    @Resource
-    private StringRedisTemplate stringRedisTemplate;
     @Resource
     private RedisTemplate redisTemplate;
     @Override

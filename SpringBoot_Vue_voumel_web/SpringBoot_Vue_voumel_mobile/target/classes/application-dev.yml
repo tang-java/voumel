@@ -1,0 +1,40 @@
+server:
+  port: 80
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.221.128:3306/volume_up_health?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+
+  redis:
+    host: 192.168.221.128
+    port: 6379
+    timeout: 5000
+    database: 0
+  jackson:
+    date-format:
+    default-property-inclusion: non_null
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+logging:
+  level:
+    com.voumel.up.web.mapper: debug
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+qiniu:
+  AccessKey: o5husWB7jx2qfL6j21VBou0_AkL7M6ErOnJRWMpz
+  SecretKey: 2mo83Bf4xisXXoU_TvVbpye2umKadE35kbKJYoX4
+  Name: test-9527
+  QiniuUrl: http://ryecjyj02.hn-bkt.clouddn.com/
+
+tenxun:
+  secretId: AKIDxpJksmW9i5DAxc4JOGwPeLsBH9nDPRHv
+  secretKey: UkkbFfrpZ6RaUDnAKFzZv2vc5KJ7kAMK
+  sign: 只是坑NB公众号
+  appid: 1400843889

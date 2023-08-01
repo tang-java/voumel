@@ -9,6 +9,7 @@ import com.voumel.up.web.mapper.CheckGroupAndCheckItemMapper;
 import com.voumel.up.web.mapper.CheckGroupMapper;
 import com.voumel.up.web.service.CheckGroupService;
 import com.voumel.up.web.service.CheckItemService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +40,6 @@ public class CheckGroupServiceImpl implements CheckGroupService {
 
     @Override
     public Integer deleteCheckGroup(Integer checkGroupId) {
-        // ----TODO 这里还要完成事务控制
         try {
             Integer deleteCheckGroup = checkGroupMapper.deleteCheckGroup(checkGroupId);
             Integer deleteRelationship = checkGroupMapper.deleteTheRelationshipBetweenCheckGroupsAndCheckItems(checkGroupId);
@@ -61,15 +61,16 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     }
 
     @Override
+    @Async("asyncExecutor")
     public Integer updateCheckGroup(CheckGroup checkGroup, Integer[] checkItemIds) {
-        Integer sum = 0;
         Integer checkGroupId = checkGroup.getId();
         checkGroupAndCheckItemMapper.deleteRelationshipOfCheckGroupAndCheckItem(checkGroupId);
-        for (Integer checkItemId : checkItemIds) {
-            Integer count = checkGroupMapper.addCheckItemToCheckGroup(checkItemId, checkGroupId);
-            sum = sum + count;
-        }
-        return sum;
+        Integer count=checkGroupMapper.batchAddCheckItemToCheckGroup(checkItemIds,checkGroupId);
+//        for (Integer checkItemId : checkItemIds) {
+//            Integer count = checkGroupMapper.addCheckItemToCheckGroup(checkItemId, checkGroupId);
+//            sum = sum + count;
+//        }
+        return count;
     }
 
     @Override
@@ -126,9 +127,9 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     }
 
     @Override
+    @Async("asyncExecutor")
     public Integer addCheckGroup(CheckGroup checkGroup, Integer[] checkItemIds) {
         Integer sum = 0;
-        //TODO 这里使用foreach循环的方式，后面使用mybatis提供的批量插入
         CheckGroup checkGroupById = checkGroupMapper.findCheckGroupById(checkGroup.getId());
         if (checkGroupById == null) {
             checkGroup.setStatus(1);

@@ -66,5 +66,11 @@
     <insert id="addCheckItemToCheckGroup" parameterType="java.lang.Integer">
         insert into t_checkgroup_checkitem(checkgroup_id,checkitem_id) values(#{checkGroupId},#{checkItemId})
     </insert>
+    <insert id="batchAddCheckItemToCheckGroup" parameterType="Integer[]">
+        insert into t_checkgroup_checkitem(checkgroup_id,checkitem_id) values
+        <foreach collection="array" item="checkItemIds" index="index" separator=",">
+            (#{checkGroupId},#{checkItemIds})
+        </foreach>
+    </insert>
 
 </mapper>

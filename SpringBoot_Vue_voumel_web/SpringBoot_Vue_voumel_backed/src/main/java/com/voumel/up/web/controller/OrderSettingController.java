@@ -52,7 +52,7 @@ public class OrderSettingController {
     @GetMapping("/orderSetting/{date}")
     public Result findOrderSettingBetweenStartDateAndEndDate(@PathVariable("date") String starDate){
 
-        
+
         return null;
     }
 

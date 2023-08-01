@@ -11,5 +11,12 @@
 
     <artifactId>SpringBoot_Vue_voumel_mobile</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>13.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

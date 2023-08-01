@@ -1,4 +1,4 @@
-package com.voumel.up.web.config;
+package com.voumel.up.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

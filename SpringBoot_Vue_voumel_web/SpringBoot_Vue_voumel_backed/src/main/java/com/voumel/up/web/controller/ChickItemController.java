@@ -108,6 +108,7 @@ public class ChickItemController {
 
     /**
      * 将查询到的数据存入Redis，并且在这个接口被调用的时候，首先查询Redis数据库中是否有记录
+     *
      * @return result ---- 所有的CheckItem对象
      */
     @GetMapping("/checkItem")
