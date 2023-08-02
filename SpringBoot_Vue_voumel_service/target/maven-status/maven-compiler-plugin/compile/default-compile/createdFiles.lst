@@ -1,0 +1,4 @@
+com\voumel\up\web\service\OrderService.class
+com\voumel\up\web\service\MemberService.class
+com\voumel\up\web\service\impl\MemberServiceImpl.class
+com\voumel\up\web\service\impl\OrderServiceImpl.class

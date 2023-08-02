@@ -52,6 +52,7 @@ public class MessageConstant {
     public static final String ORDER_FULL = "预约已满";
     public static final String HAS_ORDERED = "已经完成预约，不能重复预约";
     public static final String ORDER_SUCCESS = "预约成功";
+    public static final String ORDER_FAIL = "预约失败";
     public static final String GET_USERNAME_SUCCESS = "获取当前登录用户名称成功";
     public static final String GET_USERNAME_FAIL = "获取当前登录用户名称失败";
     public static final String GET_MENU_SUCCESS = "获取当前登录用户菜单成功";
@@ -72,4 +73,7 @@ public class MessageConstant {
     public static final String QUERY_CHINESE_MEDICAL_FAIL = "查询中医体质数据失败";
     public static final String SEND_SMS_SUCCESS = "短信发送成功";
     public static final String SEND_SMS_FAIL = "短信发送失败";
+    public static final String REDIS_SMS_EXPIRED = "短信验证码已过期";
+    public static final String REDIS_SMS_FAIL = "验证码输入错误";
+
 }

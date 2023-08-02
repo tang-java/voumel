@@ -3,6 +3,7 @@ package com.voumel.up.controller;
 import com.voumel.up.constant.MessageConstant;
 import com.voumel.up.entity.Result;
 import com.voumel.up.web.service.SmsTemplateService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,9 @@ import javax.annotation.Resource;
 public class SmsTemplateController {
     @Resource
     private SmsTemplateService smsTemplateService;
+
     @GetMapping("/setMealSmsCode/{phoneNum}")
+    @Async("asyncExecutor")
     public Result setMealSmsCode(@PathVariable String phoneNum) {
         try {
             smsTemplateService.sendSmsCode(phoneNum);

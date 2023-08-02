@@ -4,6 +4,7 @@ D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\SetMealServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\ExcelOrderSettingService.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\ExcelOrderSettingServiceImpl.java
+D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\OrderServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\CheckGroupServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\FileServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\TcmConstitutionIdentificationServiceImpl.java
@@ -12,7 +13,10 @@ D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\CheckItemServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\OrderSettingServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\OrderSettingService.java
+D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\MemberService.java
+D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\OrderService.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\CheckGroupService.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\CheckItemService.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\FileService.java
+D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\MemberServiceImpl.java
 D:\IDEA_HOME_WORK\SpringBoot_Vue_voumel_parent\SpringBoot_Vue_voumel_service\src\main\java\com\voumel\up\web\service\impl\SmsTemplateServiceImpl.java

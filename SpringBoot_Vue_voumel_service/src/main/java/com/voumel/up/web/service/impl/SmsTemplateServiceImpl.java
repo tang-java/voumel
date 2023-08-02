@@ -32,9 +32,8 @@ public class SmsTemplateServiceImpl implements SmsTemplateService {
     private TenXunSDK tenXunSDK;
 
     @Override
-    @Async("asyncExecutor")
     public void sendSmsCode(String phoneNum) {
-        Integer time=5;
+        Integer time=10;
         Integer smsCode = ValidateCodeUtils.generateValidateCode(6);
         redisTemplate.boundHashOps(phoneNum).put(RedisMessageConstant.SENDTYPE_ORDER,smsCode);
         redisTemplate.expire(phoneNum,time,TimeUnit.MINUTES);

@@ -1,13 +1,17 @@
 package com.voumel.up.web.controller;
 
+import com.volume.up.pojo.OrderSetting;
+import com.voumel.up.constant.MessageConstant;
 import com.voumel.up.entity.Result;
 import com.voumel.up.web.service.OrderSettingService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -49,11 +53,25 @@ public class OrderSettingController {
     // 创建日历对象
     //
 
+//    @GetMapping("/orderSetting/{date}")
+//    public Result findOrderSettingBetweenStartDateAndEndDate(@PathVariable("date") String starDate){
+//
+//
+//        return null;
+//    }
+
     @GetMapping("/orderSetting/{date}")
-    public Result findOrderSettingBetweenStartDateAndEndDate(@PathVariable("date") String starDate){
+    public Result findOrderSettingByOrderDate(@PathVariable @DateTimeFormat(pattern="yyyy/mm/dd") Date date){
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            String format = simpleDateFormat.format(date);
+            OrderSetting orderSetting = orderSettingService.findOrderSettingByOrderDate(format);
+            return new Result(true, "根据日期查询",orderSetting);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"查询失败,当前日期不能预约");
+        }
 
-
-        return null;
     }
 
 }

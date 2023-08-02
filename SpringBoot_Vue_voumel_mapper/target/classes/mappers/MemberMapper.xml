@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.voumel.up.web.mapper.MemberMapper">
+    <insert id="addMember" parameterType="com.volume.up.pojo.Member" useGeneratedKeys="true">
+        <selectKey order="AFTER" resultType="java.lang.Integer" keyProperty="id">
+            select last_insert_id()
+        </selectKey>
+        insert into t_member(id,fileNumber,name,sex,idCard,phoneNumber,regTime,password,email,birthday,remark)
+         values (#{id},#{fileNumber},#{name},#{sex},#{idCard},#{phoneNumber},#{regTime},#{password},#{email},#{birthday},#{remark})
+    </insert>
+
+    <select id="findMemberByPhoneNum" resultType="com.volume.up.pojo.Member">
+        select id,
+         fileNumber,
+         name,
+         sex,
+         idCard,
+         phoneNumber,
+         regTime,
+         password,
+         email,
+         birthday,
+         remark
+         from
+         t_member
+         where phoneNumber=#{phoneNum}
+    </select>
+</mapper>

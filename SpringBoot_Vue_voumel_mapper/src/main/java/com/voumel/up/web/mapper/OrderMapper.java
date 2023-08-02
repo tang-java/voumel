@@ -17,4 +17,8 @@ import java.util.List;
 public interface OrderMapper {
 
     List<Order> findAllOrderByOrderStatus(@Param("orderStatus") Integer orderStatus);
+
+    Order findConditionOrder(Order order);
+
+    void addOrder(Order order);
 }
